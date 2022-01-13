@@ -10,8 +10,8 @@
 export function* characterGenerator(allowedTypes, maxLevel) {
   // TODO: write logic here
   const indexCharacter = Math.floor(Math.random() * (allowedTypes.length - 1));
-  const character = Object.create(allowedTypes[indexCharacter]);
-  const indexLevel = Math.floor(Math.random() * maxLevel);
+  const character = allowedTypes[indexCharacter];
+  const indexLevel = Math.floor(Math.random() * maxLevel + 1);
   character.level = indexLevel;
 
   yield character;
