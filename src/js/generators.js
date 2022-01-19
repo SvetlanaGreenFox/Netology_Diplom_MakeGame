@@ -7,23 +7,26 @@
  */
 
 export function* characterGenerator(allowedTypes, maxLevel) {
-  // TODO: write logic here
-  const indexCharacter = Math.floor(Math.random() * (allowedTypes.length - 1));
-  const character = allowedTypes[indexCharacter];
-  const indexLevel = Math.floor(Math.random() * maxLevel + 1);
-  character.level = indexLevel;
+  for (let i = 0; i < allowedTypes.length; i += 1) {
+    const indexCharacter = Math.floor(Math.random() * (allowedTypes.length - 1));
+    const indexLevel = Math.floor(Math.random() * maxLevel + 1);
+    const character = allowedTypes[indexCharacter];
+    character.level = indexLevel;
 
-  yield character;
+    yield character;
+  }
 }
 
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
-  // TODO: write logic here
   const team = [];
+  const character = characterGenerator(allowedTypes, maxLevel);
+  let val = character.next().value;
 
   for (let i = 0; i < characterCount; i += 1) {
-    const character = characterGenerator(allowedTypes, maxLevel);
-    team.push(character.next().value);
-  }
+    val = character.next().value;
+
+    team.push(val);
+  };
 
   return team;
 }

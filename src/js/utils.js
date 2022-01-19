@@ -37,3 +37,23 @@ export function calcHealthLevel(health) {
 
   return 'high';
 }
+
+export function getPlayerCells(size) {
+  let cells = [];
+  for (let i = 0, j = 1; i < size ** 2;
+    i += size, j += size) {
+    cells.push(i, j);
+  }
+
+  return cells;
+}
+
+export function getEnemyCells(size) {
+  let cells = [];
+  for (let i = size - 1, j = i - 1; i < size ** 2;
+    i += size, j += size) {
+    cells.push(j, i);
+  }
+
+  return cells;
+}
