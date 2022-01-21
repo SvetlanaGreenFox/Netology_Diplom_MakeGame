@@ -17,6 +17,11 @@ export default class GameController {
     // TODO: load saved stated from stateService
     this.initTeams();
 
+    this.gamePlay.addCellEnterListener(this.onCellEnter.bind(this));
+    this.gamePlay.addCellLeaveListener(this.onCellLeave.bind(this));
+    this.gamePlay.addCellClickListener(this.onCellClick.bind(this));
+
+
     this.gamePlay.drawUi(themes['prairie']);
     this.gamePlay.redrawPositions(this.arrangeTeam);
   }
@@ -35,6 +40,14 @@ export default class GameController {
 
   onCellEnter(index) {
     // TODO: react to mouse enter
+    const elem = this.gamePlay.cells[index].children[0];
+
+    if (elem !== undefined) {
+      const { level, attack, defence, health } = this.arrangeTeam[this.arrangeTeam.findIndex(elem => elem.position === index)].character;
+
+      const message = `\uD83C\uDF96${level} \u2694${attack} \uD83D\uDEE1${defence} \u2764${health}`;
+      this.gamePlay.showCellTooltip(message, index);
+    }
   }
 
   onCellLeave(index) {
