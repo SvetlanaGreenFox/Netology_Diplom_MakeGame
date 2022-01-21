@@ -16,10 +16,14 @@ export default class Team {
 
   makeTeamPlayer() {
     this.playerTeam = generateTeam(this.charactersPlayer, this.level, 2);
+
+    return this.playerTeam;
   }
 
   makeTeamEnemy() {
     this.enemyTeam = generateTeam(this.charactersEnemy, this.level, 2);
+
+    return this.enemyTeam;
   }
 
   arrangePlayers() {
